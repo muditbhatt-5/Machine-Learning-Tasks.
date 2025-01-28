@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Algorithm Comparison</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">ML Algorithm Comparison</h1>
+        <form method="POST" action="/" enctype="multipart/form-data" class="mb-4">
+            <div class="mb-3">
+                <label for="file" class="form-label">Upload CSV File</label>
+                <input type="file" name="file" id="file" class="form-control" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Train Models</button>
+        </form>
+
+        {% if results %}
+        <h2 class="text-center">Results</h2>
+        <table class="table table-bordered table-hover mt-4">
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for algo, accuracy in results.items() %}
+                <tr>
+                    <td>{{ algo }}</td>
+                    <td>{{ accuracy }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3 class="text-center mt-4">Best Algorithm: {{ best_model }} (Accuracy: {{ best_accuracy }})</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
